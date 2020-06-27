@@ -6,16 +6,16 @@ JSON file to instances
 import os
 import json
 from models.base_model import BaseModel
-isoform_time = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class FileStorage:
+        """
+        Summary: Definning the class to store the data and make it persistant:
+            __file_path -> Private class attribute
+            __objects -> Private class attribute
+    """
     __file_path = "file.json"
     __objects = {}
-
-    def __init__(self):
-        """[summary]
-        """
 
     def all(self):
         """returns the dictionary __objects"""
