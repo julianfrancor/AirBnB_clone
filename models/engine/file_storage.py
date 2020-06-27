@@ -9,10 +9,10 @@ from models.base_model import BaseModel
 
 
 class FileStorage:
-        """
-        Summary: Definning the class to store the data and make it persistant:
-            __file_path -> Private class attribute
-            __objects -> Private class attribute
+    """
+    Summary: Definning the class to store the data and make it persistant:
+        __file_path -> Private class attribute
+        __objects -> Private class attribute
     """
     __file_path = "file.json"
     __objects = {}
