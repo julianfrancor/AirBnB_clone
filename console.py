@@ -3,6 +3,7 @@
 BaseModel class that defines all common attributes/methods for other classes
 """
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -32,6 +33,29 @@ class HBNBCommand(cmd.Cmd):
             and we want it to pass not executing anything.
         """
         pass
+
+    def do_create(self, *arg):
+        """ Creates a new instance of BaseModel, saves it
+        (to the JSON file) and prints the id.
+        """
+        if not arg[0]:
+            print("** class name missing **")
+        elif arg[0] == "BaseModel":
+            new_instance = BaseModel()
+            new_instance.save()
+            print(new_instance.id)
+        else:
+            print("** class doesn't exist **")
+
+
+
+    # def show(self):
+
+    # def destroy(self):
+
+    # def all(self):
+
+    # def update(self):
 
 if __name__ == "__main__":
     # Your code should not be executed when imported
