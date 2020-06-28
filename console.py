@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
     """
     # a custom prompt: (hbnb)
     prompt = "(hbnb) "
-    list_classes = ["BaseModel", "User"]
+    list_classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     doc_header = "Documented commands (type help <topic>):"
     ruler = '='

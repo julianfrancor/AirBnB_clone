@@ -18,7 +18,6 @@ class BaseModel:
             created_at -> Public instance attributes
             updated_at -> Public instance attributes
     """
-
     def __init__(self, *args, **kwargs):
         """
         Initialization of the object/instance attributes
@@ -32,6 +31,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
         else:
+            self.__dict__ = kwargs  # this is a new update
             for key, value in kwargs.items():
                 if key == "id":
                     self.id = value
