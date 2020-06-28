@@ -32,6 +32,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
         else:
+            self.__dict__ = kwargs  # this is a new update to check
             for key, value in kwargs.items():
                 if key == "id":
                     self.id = value
@@ -60,7 +61,7 @@ class BaseModel:
             serialization/deserialization process: create a dictionary
             representation with “simple object type” of our BaseModel
         """
-        dic_BaseClass = self.__dict__.copy()
+        dic_BaseClass = dict(self.__dict__) # change copy to dict
         dic_BaseClass["__class__"] = self.__class__.__name__
         dic_BaseClass["created_at"] = self.created_at.isoformat()
         dic_BaseClass["updated_at"] = self.updated_at.isoformat()
