@@ -3,6 +3,7 @@
 BaseModel class that defines all common attributes/methods for other classes
 """
 import cmd
+import shlex
 from models.base_model import BaseModel
 from models import storage
 
@@ -119,7 +120,9 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id by adding or
            updating attribute  (save the change into the JSON file).
         """
-        args_list = arg.split(" ") # this to parse the string
+
+        args_list = shlex.split(arg) # this to parse the string
+
         if args_list[0] == "":
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
@@ -137,10 +140,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 id_object = "{}.{}".format(args_list[0], args_list[1])
-                args_list[3] = args_list[3][1:-1]
+                args_list[2] = args_list[2].strip('\"')
+                args_list[3] = args_list[3].strip('\"')
                 setattr(storage.all()[id_object], args_list[2], args_list[3])
                 storage.save()
-
 
 if __name__ == "__main__":
     # Your code should not be executed when imported
