@@ -6,7 +6,7 @@ JSON file to instances
 import os
 import json
 from models.base_model import BaseModel
-
+from models.user import User
 
 class FileStorage:
     """
@@ -36,13 +36,15 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects (only if the JSON file
-        (__file_path) exists ; otherwise, do nothing. If the file doesn’t
+        (__file_path) exists; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)"""
         try:
             with open(FileStorage.__file_path, mode="r",
                       encoding="UTF8") as file:
                 json_dict = json.load(file)
             for key, value in json_dict.items():
-                FileStorage.__objects[key] = BaseModel(**value)
+                class_name = key.split(".")
+                FileStorage.__objects[key] = globals()[class_name[0]](**value)
+
         except Exception:
             pass
