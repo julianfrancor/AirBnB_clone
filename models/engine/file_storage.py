@@ -7,6 +7,8 @@ import json
 from models.base_model import BaseModel
 from models.user import User
 
+
+
 class FileStorage:
     """
     Summary: Definning the class to store the data and make it persistant:
@@ -30,7 +32,7 @@ class FileStorage:
         json_dict = {}
         for key, value in FileStorage.__objects.items():
             json_dict[key] = value.to_dict()
-        with open(FileStorage.__file_path, mode="w", encoding="UTF8") as file:
+        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as file:
             json.dump(json_dict, file)
 
     def reload(self):
@@ -39,10 +41,14 @@ class FileStorage:
         exist, no exception should be raised)"""
         try:
             with open(FileStorage.__file_path, mode="r",
-                      encoding="UTF8") as file:
+                      encoding="utf-8") as file:
                 json_dict = json.load(file)
             for key, value in json_dict.items():
                 class_name = key.split(".")
                 FileStorage.__objects[key] = globals()[class_name[0]](**value)
+                print("<-------Cargo los Relo--------->")
+                print(key, value)
+                print(globals()[class_name[0]](**value))
         except Exception:
+            print("No cargo nada y se metio al Except")
             pass
