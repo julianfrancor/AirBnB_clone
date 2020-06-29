@@ -6,6 +6,12 @@ JSON file to instances
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+import os
 
 
 
@@ -39,16 +45,10 @@ class FileStorage:
         """deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)"""
-        try:
+        if os.path.exists(self.__file_path):
             with open(FileStorage.__file_path, mode="r",
                       encoding="utf-8") as file:
                 json_dict = json.load(file)
             for key, value in json_dict.items():
                 class_name = key.split(".")
                 FileStorage.__objects[key] = globals()[class_name[0]](**value)
-                print("<-------Cargo los Relo--------->")
-                print(key, value)
-                print(globals()[class_name[0]](**value))
-        except Exception:
-            print("No cargo nada y se metio al Except")
-            pass
