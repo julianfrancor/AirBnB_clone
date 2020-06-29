@@ -6,11 +6,11 @@ import cmd
 import shlex
 from models.base_model import BaseModel
 from models.user import User
-from models.place import Place#Juanpa esto fue modificado <--------------------------------
-from models.state import State#Juanpa esto fue modificado <--------------------------------
-from models.city import City#Juanpa esto fue modificado <--------------------------------
-from models.amenity import Amenity#Juanpa esto fue modificado <--------------------------------
-from models.review import Review#Juanpa esto fue modificado <--------------------------------
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 from models import storage
 
@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif args_list[0] in HBNBCommand.list_classes:
         # elif args_list[0] is "User":
-            new_instance = globals()[args_list[0]]() #Juanpa esto fue modificado <--------------------------------
+            new_instance = globals()[args_list[0]]()
             new_instance.save()
             print(new_instance.id)
         else:
@@ -154,8 +154,8 @@ class HBNBCommand(cmd.Cmd):
                 value = args_list[3]
                 """ Only “simple” arguments can be updated: string,
                     integer and float. """
-                if value.replace('.','', 1).isdigit():#Juanpa esto fue modificado <--------------------------------
-                    if args_list[3].isdigit():#Juanpa esto fue modificado <--------------------------------
+                if value.replace('.','', 1).isdigit():
+                    if args_list[3].isdigit():
                         value = int(value)
                     else:
                         value = float(value)
