@@ -14,7 +14,6 @@ from models.review import Review
 import os
 
 
-
 class FileStorage:
     """
     Summary: Definning the class to store the data and make it persistant:
