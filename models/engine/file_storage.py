@@ -3,7 +3,6 @@
 class FileStorage that serializes instances to a JSON file and deserializes
 JSON file to instances
 """
-import os
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -45,6 +44,5 @@ class FileStorage:
             for key, value in json_dict.items():
                 class_name = key.split(".")
                 FileStorage.__objects[key] = globals()[class_name[0]](**value)
-
         except Exception:
             pass
