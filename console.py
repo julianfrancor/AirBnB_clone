@@ -5,6 +5,13 @@ BaseModel class that defines all common attributes/methods for other classes
 import cmd
 import shlex
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place#Juanpa esto fue modificado <--------------------------------
+from models.state import State#Juanpa esto fue modificado <--------------------------------
+from models.city import City#Juanpa esto fue modificado <--------------------------------
+from models.amenity import Amenity#Juanpa esto fue modificado <--------------------------------
+from models.review import Review#Juanpa esto fue modificado <--------------------------------
+
 from models import storage
 
 
@@ -44,8 +51,9 @@ class HBNBCommand(cmd.Cmd):
         args_list = arg.split(" ") # this to parse the string
         if not args_list[0]:
             print("** class name missing **")
-        elif args_list[0] == "BaseModel":
-            new_instance = BaseModel()
+        elif args_list[0] in HBNBCommand.list_classes:
+        # elif args_list[0] is "User":
+            new_instance = globals()[args_list[0]]() #Juanpa esto fue modificado <--------------------------------
             new_instance.save()
             print(new_instance.id)
         else:
@@ -106,24 +114,26 @@ class HBNBCommand(cmd.Cmd):
             on the class name
         """
         element_list = []
-        args_list = arg.split(" ") # this to parse the string
-        if args_list[0] not in HBNBCommand.list_classes:
-            print("** class doesn't exist **")
-        else:
+        args_list = arg.split() # this to parse the string
+        if len(args_list) == 0: #all solo
+            for key, value in storage.all().items():
+                    element_list.append(str(value))
+            print(element_list)
+        elif args_list[0] in HBNBCommand.list_classes: #all with arguments
             for key, value in storage.all().items():
                 if value.__class__.__name__ == args_list[0]:
                     element_list.append(str(value))
             print(element_list)
+        else:
+            print("** class doesn't exist **")
 
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or
            updating attribute  (save the change into the JSON file).
         """
-
         args_list = shlex.split(arg) # this to parse the string
-
-        if args_list[0] == "":
+        if len(args_list) == 0:
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
             print("** class doesn't exist **")
@@ -140,10 +150,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 id_object = "{}.{}".format(args_list[0], args_list[1])
-                args_list[2] = args_list[2].strip('\"')
-                args_list[3] = args_list[3].strip('\"')
-                setattr(storage.all()[id_object], args_list[2], args_list[3])
-                storage.save()
+                name_attr = args_list[2]
+                value = args_list[3]
+                """ Only “simple” arguments can be updated: string,
+                    integer and float. """
+                if value.replace('.','', 1).isdigit():#Juanpa esto fue modificado <--------------------------------
+                    if args_list[3].isdigit():#Juanpa esto fue modificado <--------------------------------
+                        value = int(value)
+                    else:
+                        value = float(value)
+                setattr(storage.all()[id_object], name_attr, value)
+                storage.all()[id_object].save()
 
 if __name__ == "__main__":
     # Your code should not be executed when imported
