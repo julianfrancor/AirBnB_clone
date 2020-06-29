@@ -31,12 +31,16 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
         else:
-            self.__dict__ = kwargs  # this is a new update
+            # self.__dict__ = kwargs  # this is a new update
             for key, value in kwargs.items():
                 if key == "id":
                     self.id = value
                 elif key == "created_at" or key == "updated_at":
                     self.__dict__[key] = datetime.strptime(value, isoform_time)
+                elif key is "__class__": # de aqui para abajo fue para arrelgar
+                    pass # el problema de intanciacion con el __class__
+                elif key is not "__class__":
+                    self.__dict__[key] = value
 
     def __str__(self):
         """ Writing the __str__ method """
