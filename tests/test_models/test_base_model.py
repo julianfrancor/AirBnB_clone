@@ -63,6 +63,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNot(self.bm_instance1, self.bm_instance2)
 
     def test_string(self):
+        """check that it displays the correct string format output"""
         bm_instance1_json = self.bm_instance1.to_dict()
         bm_instance3 = BaseModel(**bm_instance1_json)
         self.assertEqual(bm_instance3.__str__(), "[{}] ({}) {}".format
@@ -70,6 +71,7 @@ class TestBaseModel(unittest.TestCase):
                           bm_instance3.id, bm_instance3.__dict__))
 
     def test_save(self):
+        """check if update changes"""
         bm_instance1_json = self.bm_instance1.to_dict()
         bm_instance3 = BaseModel(**bm_instance1_json)
         self.bm_instance1.save()
@@ -77,6 +79,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(bm_instance3.updated_at, self.bm_instance1.updated_at)
 
     def test_dictionary(self):
+        """check if to_dict module exists in the _ic of the class."""
         self.bm_instance1.name = "to infinity and beyond"
         bm1_dic = self.bm_instance1.to_dict()
         self.assertIsInstance(bm1_dic, dict)
@@ -84,4 +87,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(bm1_dic["id"], self.bm_instance1.id)
         update_aux = bm1_dic["updated_at"].split("T")
         self.assertEqual(" ".join(update_aux), str(self.bm_instance1.updated_at))
+        # self.assertRaises(KeyError, BaseModel().__dict__.get("to_dict"))
 
