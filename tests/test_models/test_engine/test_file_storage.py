@@ -33,10 +33,6 @@ class TestFileStorage(unittest.TestCase):
         result = pep8style.check_files(['./models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0)
 
-    def test_is_instance(self):
-        """Test for instantiation"""
-        self.assertIsInstance(self.storage_instance, FileStorage)
-
     def test_instantiation(self):
         """ tests correct instantiation of FileStorage class  """
         self.assertEqual(type(models.storage_instance).__name__, "FileStorage")
@@ -59,13 +55,14 @@ class TestFileStorage(unittest.TestCase):
 
     def test_BaseModel_saveStorage(self):
         """ Checks if the save function works """
-        self.base1.name = "Halo"
-        self.base1.save()
+        self.bm_instance.name = "juan"
+        self.bm_instance.save()
         models.storage.reload()
         models.storage.all()
         self.assertIsInstance(models.storage.all(), dict)
-        self.assertTrue(hasattr(self.base1, 'save'))
-        self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
+        self.assertTrue(hasattr(self.bm_instance, 'save'))
+        self.assertNotEqual(self.bm_instance.created_at,
+                            self.bm_instance.updated_at)
 
     def test_User_saveStorage(self):
         """ Checks if the save function works """
