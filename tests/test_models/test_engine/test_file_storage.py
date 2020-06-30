@@ -62,3 +62,24 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(models.storage.all(), dict)
         self.assertTrue(hasattr(self.user1, 'save'))
         self.assertNotEqual(self.user1.created_at, self.user1.updated_at)
+
+    def test_attributes(self):
+        """ tests class attributes"""
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+        self.assertIsInstance(models.storage._FileStorage__objects, dict)
+        self.assertIsInstance(models.storage._FileStorage__file_path, str)
+
+    def test_no_arguments(self):
+        """ tests initialization without arguments  """
+        with self.assertRaises(TypeError) as error:
+            FileStorage.__init__()
+            fail = "descriptor '__init__' of 'object' object needs an argument"
+            self.assertEqual(str(error.exception), fail)
+
+    def test_arguments(self):
+        """ tests __init__ with many arguments"""
+        with self.assertRaises(TypeError) as error:
+            base = FileStorage(7, 12)
+        fail = "object() takes no parameters"
+        self.assertEqual(str(error.exception), fail)
