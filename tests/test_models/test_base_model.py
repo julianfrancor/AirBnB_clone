@@ -57,9 +57,12 @@ class TestBaseModel(unittest.TestCase):
         self.bm_instance2 = BaseModel(**bm_instance1_json)
         self.assertEqual(self.bm_instance2.id, self.bm_instance1.id)
         self.assertEqual(self.bm_instance2.name, self.bm_instance1.name)
-        self.assertEqual(self.bm_instance2.my_number, self.bm_instance1.my_number)
-        self.assertEqual(self.bm_instance2.created_at, self.bm_instance1.created_at)
-        self.assertEqual(self.bm_instance2.updated_at, self.bm_instance1.updated_at)
+        self.assertEqual(self.bm_instance2.my_number,
+                         self.bm_instance1.my_number)
+        self.assertEqual(self.bm_instance2.created_at,
+                         self.bm_instance1.created_at)
+        self.assertEqual(self.bm_instance2.updated_at,
+                         self.bm_instance1.updated_at)
         self.assertIsNot(self.bm_instance1, self.bm_instance2)
 
     def test_string(self):
@@ -75,8 +78,10 @@ class TestBaseModel(unittest.TestCase):
         bm_instance1_json = self.bm_instance1.to_dict()
         bm_instance3 = BaseModel(**bm_instance1_json)
         self.bm_instance1.save()
-        self.assertEqual(bm_instance3.created_at, self.bm_instance1.created_at)
-        self.assertNotEqual(bm_instance3.updated_at, self.bm_instance1.updated_at)
+        self.assertEqual(bm_instance3.created_at,
+                         self.bm_instance1.created_at)
+        self.assertNotEqual(bm_instance3.updated_at,
+                            self.bm_instance1.updated_at)
 
     def test_dictionary(self):
         """check if to_dict module exists in the _ic of the class."""
@@ -86,6 +91,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(bm1_dic['__class__'], "BaseModel")
         self.assertEqual(bm1_dic["id"], self.bm_instance1.id)
         update_aux = bm1_dic["updated_at"].split("T")
-        self.assertEqual(" ".join(update_aux), str(self.bm_instance1.updated_at))
-        # self.assertRaises(KeyError, BaseModel().__dict__.get("to_dict"))
-
+        self.assertEqual(" ".join(update_aux),
+                         str(self.bm_instance1.updated_at))
