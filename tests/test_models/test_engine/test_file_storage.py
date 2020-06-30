@@ -16,11 +16,26 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
 
+    def setUp(self):
+        """SetUp method"""
+        self.storage_instance = FileStorage()
+        self.__file_path = "file.json"
+        self.__objects = {}
+
     def test_base_pep8(self):
+        """Test for pep8"""
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['./models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0)
 
     def test_is_instance(self):
-        storage_instance = FileStorage()
-        self.assertIsInstance(storage_instance, FileStorage)
+        """Test for instantiation"""
+        self.assertIsInstance(self.storage_instance, FileStorage)
+
+    def test_docstring(self):
+        """test docstring in the file"""
+        self.assertIsNotNone(FileStorage.__doc__)
+        self.assertIsNotNone(FileStorage.all.__doc__)
+        self.assertIsNotNone(FileStorage.new.__doc__)
+        self.assertIsNotNone(FileStorage.save.__doc__)
+        self.assertIsNotNone(FileStorage.reload.__doc__)

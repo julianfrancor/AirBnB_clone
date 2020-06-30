@@ -16,25 +16,42 @@ from models.engine.file_storage import FileStorage
 
 class TestCity(unittest.TestCase):
 
+    def setUp(self):
+        """SetUp method"""
+        self.city1 = City()
+        self.city1.state_id = "ad45ad61as6d1"
+        self.city1.name = "juan"
+
     def test_base_pep8(self):
+        """Test for pep8"""
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['./models/city.py'])
         self.assertEqual(result.total_errors, 0)
 
+    def test_docstring(self):
+        """test docstring in the file"""
+        self.assertIsNotNone(City.__doc__)
+
     def test_is_instance(self):
-        model = City()
-        self.assertIsInstance(model, City)
+        """Test for instantiation"""
+        self.assertIsInstance(self.city1, City)
 
     def test_attributes(self):
-        my_model = City()
-        my_model.name = "Holberton"
-        my_model.my_number = 89
-        my_model.save()
-        my_model_json = my_model.to_dict()
-        my_new_model = City(**my_model_json)
-        self.assertEqual(my_new_model.id, my_model.id)
-        self.assertEqual(my_new_model.name, my_model.name)
-        self.assertEqual(my_new_model.my_number, my_model.my_number)
-        self.assertEqual(my_new_model.created_at, my_model.created_at)
-        self.assertEqual(my_new_model.updated_at, my_model.updated_at)
-        self.assertIsNot(my_model, my_new_model)
+        """Test to check attributes"""
+        self.city1.save()
+        city1_json = self.city1.to_dict()
+        my_new_city = City(**city1_json)
+        self.assertEqual(my_new_city.id, self.city1.id)
+        self.assertEqual(my_new_city.created_at, self.city1.created_at)
+        self.assertEqual(my_new_city.updated_at, self.city1.updated_at)
+        self.assertIsNot(self.city1, my_new_city)
+
+    def test_subclass(self):
+        """Test to check the inheritance"""
+        self.assertTrue(issubclass(self.city1.__class__, BaseModel), True)
+
+    def test_save(self):
+        """Test to check save method"""
+        variable_update = self.city1.updated_at
+        self.city1.save()
+        self.assertNotEqual(variable_update, self.city1.updated_at)

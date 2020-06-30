@@ -16,25 +16,43 @@ from models.engine.file_storage import FileStorage
 
 class TestReview(unittest.TestCase):
 
+    def setUp(self):
+        """SetUp method"""
+        self.review1 = Review()
+        self.review1.place_id = "24g5gk2gk234"
+        self.review1.user_id = "3r45t9s323d9"
+        self.review1.text = "Loren ipsum"
+
     def test_base_pep8(self):
+        """Test for pep8"""
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['./models/review.py'])
         self.assertEqual(result.total_errors, 0)
 
+    def test_docstring(self):
+        """test docstring in the file"""
+        self.assertIsNotNone(Review.__doc__)
+
     def test_is_instance(self):
-        model = Review()
-        self.assertIsInstance(model, Review)
+        """Test for instantiation"""
+        self.assertIsInstance(self.review1, Review)
 
     def test_attributes(self):
-        my_model = Review()
-        my_model.name = "Holberton"
-        my_model.my_number = 89
-        my_model.save()
-        my_model_json = my_model.to_dict()
-        my_new_model = Review(**my_model_json)
-        self.assertEqual(my_new_model.id, my_model.id)
-        self.assertEqual(my_new_model.name, my_model.name)
-        self.assertEqual(my_new_model.my_number, my_model.my_number)
-        self.assertEqual(my_new_model.created_at, my_model.created_at)
-        self.assertEqual(my_new_model.updated_at, my_model.updated_at)
-        self.assertIsNot(my_model, my_new_model)
+        """Test to check attributes"""
+        self.review1.save()
+        review1_json = self.review1.to_dict()
+        my_new_review = Review(**review1_json)
+        self.assertEqual(my_new_review.id, self.review1.id)
+        self.assertEqual(my_new_review.created_at, self.review1.created_at)
+        self.assertEqual(my_new_review.updated_at, self.review1.updated_at)
+        self.assertIsNot(self.review1, my_new_review)
+
+    def test_subclass(self):
+        """Test to check the inheritance"""
+        self.assertTrue(issubclass(self.review1.__class__, BaseModel), True)
+
+    def test_save(self):
+        """Test to check save method"""
+        variable_update = self.review1.updated_at
+        self.review1.save()
+        self.assertNotEqual(variable_update, self.review1.updated_at)
