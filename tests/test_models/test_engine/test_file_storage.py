@@ -65,8 +65,7 @@ class TestFileStorage(unittest.TestCase):
         models.storage.all()
         self.assertIsInstance(models.storage.all(), dict)
         self.assertTrue(hasattr(self.bm_instance, 'save'))
-        self.assertNotEqual(self.bm_instance.created_at,
-                            self.bm_instance.updated_at)
+        self.assertNotEqual(self.bm_instance.created_at, self.bm_instance.updated_at)
 
     def test_User_saveStorage(self):
         """ Checks if the save function works """
@@ -98,3 +97,4 @@ class TestFileStorage(unittest.TestCase):
             base = FileStorage(7, 12)
         fail = "object() takes no parameters"
         self.assertEqual(str(error.exception), fail)
+
