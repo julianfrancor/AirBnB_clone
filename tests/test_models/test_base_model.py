@@ -69,9 +69,10 @@ class TestBaseModel(unittest.TestCase):
         """check that it displays the correct string format output"""
         bm_instance1_json = self.bm_instance1.to_dict()
         bm_instance3 = BaseModel(**bm_instance1_json)
-        self.assertEqual(bm_instance3.__str__(), "[{}] ({}) {}".format
-                         (bm_instance3.__class__.__name__,
-                          bm_instance3.id, bm_instance3.__dict__))
+        self.assertEqual(bm_instance3.__str__(),
+                         "[{}] ({}) {}".format(bm_instance3.__class__.__name__,
+                                               bm_instance3.id,
+                                               bm_instance3.__dict__))
 
     def test_save(self):
         """check if update changes"""
