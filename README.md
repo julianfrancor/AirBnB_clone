@@ -84,7 +84,7 @@ Follow the following instructions to get a copy of the program and run in your l
 ###  [First User](./models/user.py)
 * Write a class User that inherits from BaseModel
 
-###  [More classes]
+###  More classes
 * Classes that inherit from BaseModel:
 	- [State](./models/state.py)
 	- [City](./models/city.py)
