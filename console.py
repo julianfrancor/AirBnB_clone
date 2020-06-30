@@ -87,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
         """ Deletes an instance based on the class name and id
             (save the change into the JSON file).
         """
-        args_list = arg.split(" ")  # this to parse the string
+        args_list = arg.split(" ")
         if args_list[0] == "":
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
