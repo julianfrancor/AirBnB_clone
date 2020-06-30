@@ -16,6 +16,10 @@ from models.engine.file_storage import FileStorage
 
 class TestUser(unittest.TestCase):
 
+    def setUp(self):
+        """SetUp method"""
+        self.user_inst1 = User()
+
     def test_base_pep8(self):
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['./models/user.py'])
