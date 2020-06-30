@@ -30,7 +30,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_is_instance(self):
         """Test for instantiation"""
-        self.assertIsInstance(storage_instance, FileStorage)
+        self.assertIsInstance(self.storage_instance, FileStorage)
 
     def test_docstring(self):
         """test docstring in the file"""
