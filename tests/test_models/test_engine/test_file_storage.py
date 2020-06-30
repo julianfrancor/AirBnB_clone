@@ -39,7 +39,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_instantiation(self):
         """ tests correct instantiation of FileStorage class  """
-        self.assertEqual(type(models.storage_instance).__name__, "FileStorage")
+        self.assertEqual(type(self.storage_instance).__name__, "FileStorage")
 
     def test_docstring(self):
         """test docstring in the file"""
@@ -59,7 +59,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_BaseModel_saveStorage(self):
         """ Checks if the save function works """
-        self.base1.name = "Halo"
+        self.base1 = BaseModel()
+        self.base1.name = "Pinocho"
         self.base1.save()
         models.storage.reload()
         models.storage.all()
