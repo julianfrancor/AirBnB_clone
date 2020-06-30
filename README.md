@@ -1,12 +1,22 @@
-# 0x00. AirBnB clone - The console
+#  AirBnB clone - The console
 
-## Resources:books:
-Read or watch:
-* []()
-* []()
+####  [AirBnB clone - The console](https://intranet.hbtn.io/projects/263)
+For further information, click on the previous link.
 
----
-## General Information and contents
+##  Contents:
+
+- Project Description
+- General Objetives
+- Command Interpreter Description
+	* How to start it
+	* Commands and their usage
+	* How to use it
+
+## Project Description
+
+Airbnb Clone is the main project of the second trimester at Holberton School. The aim is to develop an entire web application that simulates the behavior of the Airbnb platform. Starting from the console or command interpreter, to manipulate data without a visual interface, like in a Shell (perfect for development and debugging), followed by the consturction of a website (the front-end) that shows the final product to everybody: static and dynamic, once it's finished what follows is the connection with the database or files that store data (data = objects). And last but not least, the creation of an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them).
+
+##  General Objetives
 
 * How to create a Python package
 * How to create a command interpreter in Python using the cmd module
@@ -18,22 +28,14 @@ Read or watch:
 * What is *args and how to use it
 * What is **kwargs and how to use it
 * How to handle named arguments in a function
----
 
-#### [AirBnB clone - The console](https://intranet.hbtn.io/projects/263)
-For further information, click on the previous link.
+## Command Interpreter Description
 
-## General information
+* How to start it
+* Commands and their usage
+* How to use it
 
-* description of the project
-* description of the command interpreter:
-* how to start it
-* how to use it
-* examples
-* You should have an AUTHORS file at the root of your repository, listing all individuals having contributed content to the repository. For format, reference Docker’s AUTHORS page
-* You should use branches and pull requests on Github - it will help you as team to organize your work
-
-## Prerequisites
+##  Prerequisites
 
 For further installation is necessary to set this program on Ubuntu 14.04 LTS using Vagrant in VirtualBox.
 
@@ -46,81 +48,51 @@ You need to install this software
 5. VSCode
 6. Usage: ./console.py
 ```
+##  Instalation.
 
-## Environment
-
-This project was constructed and tested in the previous set up and debugged with GCC version 4.8.4.
-
-
-## Instalation.
 Follow the following instructions to get a copy of the program and run in your local machine.
 
 - Clone the following repository.
- > `https://github.com/julianfrancor/AirBnB_clone.git`
-
+> `https://github.com/julianfrancor/AirBnB_clone.git`
 - Run the program
- > `./console.py`
+> `./console.py`
 
-
-
-## Built with...
+##  Built with...
 
 - Visual Studio Code - Coding and structuring.
-- Clion - Debugging and testing outcomes.
 
----
-### [0. README, AUTHORS]
-* Write a README.md:
-- description of the project
-- description of the command interpreter:
-- You should have an AUTHORS file at the root of your repository, listing all individuals having contributed content to the repository. For format, reference Docker’s AUTHORS page
-- You should use branches and pull requests on Github - it will help you as team to organize your work
+- python 3.4.3
 
-### [1. Be PEP8 compliant!]
-* Write beautiful code that passes the PEP8 checks.
+###  [BaseModel](./models/base_model.py)
 
-### [2. Unittests]
-* All your files, classes, functions must be tested with unit tests
-
-### [3. BaseModel](./models/base_model.py)
 * Write a class BaseModel that defines all common attributes/methods for other classes
 
-### [4. Create BaseModel from dictionary](./models/base_model.py)
-* Now it’s time to re-create an instance with this dictionary representation
+###  [File storage](./models/engine/file_storage.py)
 
-### [5.  Store first object](./models/engine/file_storage.py)
 * Write a class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances
 
-### [6. Console 0.0.1](./console.py)
+###  [Console](./console.py)
+
 * Write a program called console.py that contains the entry point of the command interpreter:
 
-### [7. Console 0.1](./console.py)
-* Update your console.py to have these commands:
-- create
+  create
 - show
 - destroy
 - all
 - update
 
-### [8. First User](./models/user.py)
+###  [First User](./models/user.py)
 * Write a class User that inherits from BaseModel
 
-### [9. More classes!]
-* Write all those classes that inherit from BaseModel
-- State
-- City
-- Amenity
-- Place
-- Review
+###  [More classes]
+* Classes that inherit from BaseModel:
+	- [State](./models/state.py)
+	- [City](./models/city.py)
+	- [Amenity](./models/amenity.py)
+	- [Place](./models/place.py)
+	- [Review](./models/review.py)
 
-### [10. Console 1.0](./console.py)
-* Update FileStorage to manage correctly serialization and deserialization of all our new classes: Place, State, City, Amenity and Review
-* Update your command interpreter (console.py) to allow those actions: show, create, destroy, update and all with all classes created previously.
-
----
-
-##  Authors
+ ##  Authors
 
 - [GitHub - Julian Franco Rua](https://github.com/julianfrancor)
-
 - [GitHub - Juan Pablo Yepes](https://github.com/PabloYepes27)
