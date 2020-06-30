@@ -33,9 +33,9 @@ class TestFileStorage(unittest.TestCase):
         result = pep8style.check_files(['./models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0)
 
-    def test_is_instance(self):
-        """Test for instantiation"""
-        self.assertIsInstance(self.storage_instance, FileStorage)
+    def test_instantiation(self):
+        """ tests correct instantiation of FileStorage class  """
+        self.assertEqual(type(models.storage).__name__, "FileStorage")
 
     def test_docstring(self):
         """test docstring in the file"""
