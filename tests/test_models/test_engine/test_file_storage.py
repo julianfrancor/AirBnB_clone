@@ -12,6 +12,7 @@ from models.state import State
 from models.review import Review
 from models.user import User
 from models.engine.file_storage import FileStorage
+import models
 
 
 class TestFileStorage(unittest.TestCase):
@@ -22,9 +23,9 @@ class TestFileStorage(unittest.TestCase):
     """
     def setUp(self):
         """SetUp method"""
+        self.bm_instance = BaseModel()
         self.storage_instance = FileStorage()
-        self.__file_path = "file.json"
-        self.__objects = {}
+        self.user1 = User()
 
     def test_base_pep8(self):
         """Test for pep8"""
@@ -43,3 +44,21 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(FileStorage.new.__doc__)
         self.assertIsNotNone(FileStorage.save.__doc__)
         self.assertIsNotNone(FileStorage.reload.__doc__)
+
+    def test_field_storage_exist(self):
+        """ Checks if methods exists """
+        self.assertTrue(hasattr(self.storage_instance, "__init__"))
+        self.assertTrue(hasattr(self.storage_instance, "all"))
+        self.assertTrue(hasattr(self.storage_instance, "new"))
+        self.assertTrue(hasattr(self.storage_instance, "save"))
+        self.assertTrue(hasattr(self.storage_instance, "reload"))
+
+    def test_User_saveStorage(self):
+        """ Checks if the save function works """
+        self.user1.first_name = "juan"
+        self.user1.save()
+        models.storage.reload()
+        models.storage.all()
+        self.assertIsInstance(models.storage.all(), dict)
+        self.assertTrue(hasattr(self.user1, 'save'))
+        self.assertNotEqual(self.user1.created_at, self.user1.updated_at)
