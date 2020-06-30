@@ -11,6 +11,7 @@ For further information, click on the previous link.
 	* How to start it
 	* Commands and their usage
 	* How to use it
+    * examples
 
 ## Project Description
 
@@ -34,6 +35,7 @@ Airbnb Clone is the main project of the second trimester at Holberton School. Th
 * How to start it
 * Commands and their usage
 * How to use it
+* examples
 
 ##  Prerequisites
 
