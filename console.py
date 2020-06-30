@@ -11,7 +11,6 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-
 from models import storage
 
 
@@ -19,7 +18,6 @@ class HBNBCommand(cmd.Cmd):
     """
         Summary: class that define the command interpreter:
     """
-    # a custom prompt: (hbnb)
     prompt = "(hbnb) "
     list_classes = ["BaseModel", "User", "Place", "State", "City",
                     "Amenity", "Review"]
@@ -162,6 +160,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    """ Your code should not be executed when imported
-    cmdloop() is the main processing loop of the interpreter. """
     HBNBCommand().cmdloop()
