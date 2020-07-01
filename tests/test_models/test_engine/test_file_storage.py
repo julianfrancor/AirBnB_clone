@@ -24,6 +24,7 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """SetUp method"""
         self.bm_instance = BaseModel()
+        self.storage_instance = FileStorage()
         self.user1 = User()
 
     def test_base_pep8(self):
