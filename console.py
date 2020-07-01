@@ -158,20 +158,27 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[id_object], name_attr, value)
                 storage.all()[id_object].save()
 
+    def do_count(self, arg):
+        """Count the number of instances of a class"""
+        count = 0
+        for key, value in storage.all().items():
+            if key.split(".")[0] == arg:
+                count += 1
+        print(count)
 
-    # def default(self, arg):
-    #     """Method called on an input line when the command prefix is
-    #     not recognized. If this method is not overridden, it prints an
-    #     error message and returns. """
-
-    def precmd(self, line):
-        """ Hook method executed just before the command line line is interpreted, but after the input prompt is generated and issued. This method is a stub in Cmd; it exists to be overridden by subclasses. The return value is used as the command which will be executed by the onecmd() method; the precmd() implementation may re-write the command or simply return line unchanged. """
-        args_list = line.split(".")
-        line = line.lower()
-        if self.file and 'playback' not in line:
-            print(line, file=self.file)
-        return line
-        
+    def default(self, arg):
+        """Method called on an input line when the command prefix is
+        not recognized. If this method is not overridden, it prints an
+        error message and returns. """
+        args_list = arg.split(".")
+        if args_list[0] in HBNBCommand.list_classes:
+            method = args_list[1].split("(")
+            # retrieve all instances of a class by using: <class name>.all()
+            if method[0] == "all":
+                return self.do_all(args_list[0])
+            # retrieve the number of instances of a class: <class name>.count()
+            elif method[0] == "count":
+                return self.do_count(args_list[0])
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
