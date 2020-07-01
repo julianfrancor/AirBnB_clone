@@ -92,9 +92,6 @@ class TestFileStorage(unittest.TestCase):
             fail = "descriptor '__init__' of 'object' object needs an argument"
             self.assertEqual(str(error.exception), fail)
 
-    def test_all(self):
-        """ Test all witout any object"""        
-
     def test_arguments(self):
         """ tests __init__ with many arguments"""
         with self.assertRaises(TypeError) as error:
