@@ -12,6 +12,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models import storage
+from re import search
 
 
 class HBNBCommand(cmd.Cmd):
@@ -128,7 +129,8 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id by adding or
            updating attribute  (save the change into the JSON file).
         """
-        args_list = shlex.split(arg)
+        args_list = shlex.split(arg[:])
+        arg = arg.split(" ")
         if len(args_list) == 0:
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
@@ -145,16 +147,18 @@ class HBNBCommand(cmd.Cmd):
             if id_object not in storage.all():
                 print("** no instance found **")
             else:
+                dog = r"\d+\.\d+"
                 id_object = "{}.{}".format(args_list[0], args_list[1])
                 name_attr = args_list[2]
                 value = args_list[3]
                 """ Only “simple” arguments can be updated: string,
                     integer and float. """
-                if value.replace('.', '', 1).isdigit():
-                    if args_list[3].isdigit():
-                        value = int(value)
-                    else:
-                        value = float(value)
+                if '"' in arg[3]:
+                    pass
+                elif search(dog, arg[3]):
+                    value = float(value)
+                elif arg[3].isdigit():
+                    value = int(value)
                 setattr(storage.all()[id_object], name_attr, value)
                 storage.all()[id_object].save()
 
@@ -171,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
         not recognized. If this method is not overridden, it prints an
         error message and returns. """
         # BaseModel show("440f0fd5-502f-4f46-bc09-6b2c1b156fa7")
-        args_list = arg.split(".")
+        args_list = arg.split(".", 1)
         if args_list[0] in HBNBCommand.list_classes:  # BaseModel
             method = args_list[1].split("(")  # show
             # retrieve all instances of a class by using: <class name>.all()
@@ -181,7 +185,6 @@ class HBNBCommand(cmd.Cmd):
             elif method[0] == "count":
                 return self.do_count(args_list[0])
             elif method[0] == "show":
-                # show( 440f0fd5-502f-4f46-bc09-6b2c1b156fa7 )
                 id_show = args_list[1].split('"')
                 args_show = "{} {}".format(args_list[0], id_show[1])
                 return self.do_show(args_show)
@@ -190,15 +193,13 @@ class HBNBCommand(cmd.Cmd):
                 args_destroy = "{} {}".format(args_list[0], id_destroy[1])
                 return self.do_destroy(args_destroy)
             elif method[0] == "update":
-                # update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
-                # User.update("2f18e70a-bb66-4965-b3b4-b519e428b0c9", "first_name", "John")
-                # User.update("2f18e70a-bb66-4965-b3b4-b519e428b0c9", "age", 35)
-                part1 = method[1].split(")")  # "2f18e70a-bb66-4965-b3b4-b519e428b0c9", "first_name", "John")
-                part2 = part1[0]. split(",")
-                part3 = shlex.split(part2)
-                args_update = "{} {} {} {}".format(args_list[0], part3[0], part3[1], part3[2])
-                print(args_update)
-                # return self.do_update(args_update)
+                part1 = method[1].replace(")", "")
+                part2 = part1.replace('"', "", 4)
+                part3 = part2.split(", ")
+                args_update = "{} {} {} {}".format(args_list[0], part3[0],
+                                                   part3[1], part3[2])
+                return self.do_update(args_update)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
