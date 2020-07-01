@@ -186,10 +186,19 @@ class HBNBCommand(cmd.Cmd):
                 args_show = "{} {}".format(args_list[0], id_show[1])
                 return self.do_show(args_show)
             elif method[0] == "destroy":
-                # show( 440f0fd5-502f-4f46-bc09-6b2c1b156fa7 )
-                id_show = args_list[1].split('"')
-                args_show = "{} {}".format(args_list[0], id_show[1])
-                return self.do_destroy(args_show)
+                id_destroy = args_list[1].split('"')
+                args_destroy = "{} {}".format(args_list[0], id_destroy[1])
+                return self.do_destroy(args_destroy)
+            elif method[0] == "update":
+                # update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+                # User.update("2f18e70a-bb66-4965-b3b4-b519e428b0c9", "first_name", "John")
+                # User.update("2f18e70a-bb66-4965-b3b4-b519e428b0c9", "age", 35)
+                part1 = method[1].split(")")  # "2f18e70a-bb66-4965-b3b4-b519e428b0c9", "first_name", "John")
+                part2 = part1[0]. split(",")
+                part3 = shlex.split(part2)
+                args_update = "{} {} {} {}".format(args_list[0], part3[0], part3[1], part3[2])
+                print(args_update)
+                # return self.do_update(args_update)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
