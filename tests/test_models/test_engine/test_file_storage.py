@@ -44,9 +44,7 @@ class TestFileStorage(unittest.TestCase):
     def test_is_instance(self):
         """Test for instantiation"""
         self.assertIsInstance(self.storage_instance, FileStorage)
-
-    def test_instantiation(self):
-        """ tests correct instantiation of FileStorage class  """
+        self.assertEqual(type(models.storage).__name__, "FileStorage")
         self.assertEqual(type(self.storage_instance).__name__, "FileStorage")
 
     def test_file_storage_exist(self):
