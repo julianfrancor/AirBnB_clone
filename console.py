@@ -159,5 +159,19 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[id_object].save()
 
 
+    # def default(self, arg):
+    #     """Method called on an input line when the command prefix is
+    #     not recognized. If this method is not overridden, it prints an
+    #     error message and returns. """
+
+    def precmd(self, line):
+        """ Hook method executed just before the command line line is interpreted, but after the input prompt is generated and issued. This method is a stub in Cmd; it exists to be overridden by subclasses. The return value is used as the command which will be executed by the onecmd() method; the precmd() implementation may re-write the command or simply return line unchanged. """
+        args_list = line.split(".")
+        line = line.lower()
+        if self.file and 'playback' not in line:
+            print(line, file=self.file)
+        return line
+        
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
