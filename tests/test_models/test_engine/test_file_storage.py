@@ -24,7 +24,6 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """SetUp method"""
         self.bm_instance = BaseModel()
-        self.storage_instance = FileStorage()
         self.user1 = User()
 
     def test_base_pep8(self):
@@ -35,7 +34,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_is_instance(self):
         """Test for instantiation"""
-        self.assertIsInstance(self.storage_instance, FileStorage)
+        self.assertIsInstance(models.storage, FileStorage)
 
     def test_instantiation(self):
         """ tests correct instantiation of FileStorage class  """
@@ -51,6 +50,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_field_storage_exist(self):
         """ Checks if methods exists """
+        self.storage_instance = FileStorage()
         self.assertTrue(hasattr(self.storage_instance, "__init__"))
         self.assertTrue(hasattr(self.storage_instance, "all"))
         self.assertTrue(hasattr(self.storage_instance, "new"))
