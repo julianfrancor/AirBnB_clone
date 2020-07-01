@@ -185,6 +185,11 @@ class HBNBCommand(cmd.Cmd):
                 id_show = args_list[1].split('"')
                 args_show = "{} {}".format(args_list[0], id_show[1])
                 return self.do_show(args_show)
+            elif method[0] == "destroy":
+                # show( 440f0fd5-502f-4f46-bc09-6b2c1b156fa7 )
+                id_show = args_list[1].split('"')
+                args_show = "{} {}".format(args_list[0], id_show[1])
+                return self.do_destroy(args_show)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
