@@ -40,7 +40,7 @@ class TestFileStorage(unittest.TestCase):
     def test_instantiation(self):
         """ tests correct instantiation of FileStorage class  """
         storage_instance = FileStorage()
-        self.assertEqual(type(storage_instance).__name__, "FileStorage")
+        self.assertEqual(storage_instance.__class__.__name__, "FileStorage")
 
     def test_docstring(self):
         """test docstring in the file"""
