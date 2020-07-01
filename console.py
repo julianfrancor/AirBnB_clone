@@ -170,15 +170,21 @@ class HBNBCommand(cmd.Cmd):
         """Method called on an input line when the command prefix is
         not recognized. If this method is not overridden, it prints an
         error message and returns. """
+        # BaseModel show("440f0fd5-502f-4f46-bc09-6b2c1b156fa7")
         args_list = arg.split(".")
-        if args_list[0] in HBNBCommand.list_classes:
-            method = args_list[1].split("(")
+        if args_list[0] in HBNBCommand.list_classes:  # BaseModel
+            method = args_list[1].split("(")  # show
             # retrieve all instances of a class by using: <class name>.all()
             if method[0] == "all":
                 return self.do_all(args_list[0])
             # retrieve the number of instances of a class: <class name>.count()
             elif method[0] == "count":
                 return self.do_count(args_list[0])
+            elif method[0] == "show":
+                # show( 440f0fd5-502f-4f46-bc09-6b2c1b156fa7 )
+                id_show = args_list[1].split('"')
+                args_show = "{} {}".format(args_list[0], id_show[1])
+                return self.do_show(args_show)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
