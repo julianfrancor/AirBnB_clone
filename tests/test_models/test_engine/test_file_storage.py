@@ -34,11 +34,13 @@ class TestFileStorage(unittest.TestCase):
 
     def test_is_instance(self):
         """Test for instantiation"""
-        self.assertIsInstance(models.storage, FileStorage)
+        storage_instance = FileStorage()
+        self.assertIsInstance(storage_instance, FileStorage)
 
     def test_instantiation(self):
         """ tests correct instantiation of FileStorage class  """
-        self.assertEqual(type(models.storage).__name__, "FileStorage")
+        storage_instance = FileStorage()
+        self.assertEqual(type(storage_instance).__name__, "FileStorage")
 
     def test_docstring(self):
         """test docstring in the file"""
@@ -50,12 +52,12 @@ class TestFileStorage(unittest.TestCase):
 
     def test_field_storage_exist(self):
         """ Checks if methods exists """
-        self.storage_instance = FileStorage()
-        self.assertTrue(hasattr(self.storage_instance, "__init__"))
-        self.assertTrue(hasattr(self.storage_instance, "all"))
-        self.assertTrue(hasattr(self.storage_instance, "new"))
-        self.assertTrue(hasattr(self.storage_instance, "save"))
-        self.assertTrue(hasattr(self.storage_instance, "reload"))
+        storage_instance = FileStorage()
+        self.assertTrue(hasattr(storage_instance, "__init__"))
+        self.assertTrue(hasattr(storage_instance, "all"))
+        self.assertTrue(hasattr(storage_instance, "new"))
+        self.assertTrue(hasattr(storage_instance, "save"))
+        self.assertTrue(hasattr(storage_instance, "reload"))
 
     def test_BaseModel_saveStorage(self):
         """ Checks if the save function works """
