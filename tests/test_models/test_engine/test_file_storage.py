@@ -13,6 +13,7 @@ from models.review import Review
 from models.user import User
 from models.engine.file_storage import FileStorage
 import models
+classes = {"BaseModel": BaseModel}
 
 
 class TestFileStorage(unittest.TestCase):
