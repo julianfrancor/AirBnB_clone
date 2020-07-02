@@ -194,11 +194,32 @@ class HBNBCommand(cmd.Cmd):
                 return self.do_destroy(args_destroy)
             elif method[0] == "update":
                 part1 = method[1].replace(")", "")
-                part2 = part1.replace('"', "", 4)
-                part3 = part2.split(", ")
-                args_update = "{} {} {} {}".format(args_list[0], part3[0],
-                                                   part3[1], part3[2])
-                return self.do_update(args_update)
+                check_dict = part1[:].split(", ")
+                if check_dict[1][0] is "{":
+                    class_id = check_dict[0].replace('"', "")
+                    dog = r"\d+\.\d+"
+                    for i in range(1, len(check_dict)):
+                        dict_parse = check_dict[i].replace("{", "", 1)
+                        dict_parse = dict_parse.replace("}", "")
+                        dict_parse = dict_parse.replace("'", "")
+                        dict_parse = dict_parse.split(": ")
+                        if '"' in dict_parse[1]:
+                            pass
+                        elif search(dog, dict_parse[1]):
+                            dict_parse[1] = float(dict_parse[1])
+                        elif dict_parse[1].isdigit():
+                            dict_parse[1] = int(dict_parse[1])
+                        args_update = "{} {} {} {}".format(args_list[0],
+                                                           class_id,
+                                                           dict_parse[0],
+                                                           dict_parse[1])
+                        self.do_update(args_update)
+                else:
+                    part2 = part1.replace('"', "", 4)
+                    part3 = part2.split(", ")
+                    args_update = "{} {} {} {}".format(args_list[0], part3[0],
+                                                       part3[1], part3[2])
+                    return self.do_update(args_update)
 
 
 if __name__ == "__main__":
