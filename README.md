@@ -144,7 +144,7 @@ You need to install this software
 
 ## Unittests
 
-All tests should be executed att the root of the project, by using this command:
+All the tests should be executed at the root of the project by using the following command:
 
 `python3 -m unittest discover tests`
 
