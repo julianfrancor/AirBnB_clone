@@ -15,18 +15,17 @@ For further information, click on the previous link.
 
 - Command Interpreter Description
 
-* How to start it
+	* How to start it
+	* Commands and their usage
+	* How to use it
+	* examples
 
-* Commands and their usage
-
-* How to use it
-
-* examples
+- Unittests
 
 
 ##  Project Description
 
-Airbnb Clone is the main project of the second trimester at Holberton School. The aim is to develop an entire web application that simulates the behavior of the Airbnb platform. Starting from the console or command interpreter, to manipulate data without a visual interface, like in a Shell (perfect for development and debugging), followed by the consturction of a website (the front-end) that shows the final product to everybody: static and dynamic, once it's finished what follows is the connection with the database or files that store data (data = objects). And last but not least, the creation of an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them).
+Airbnb Clone is the main project of the second trimester at Holberton School. The aim is to develop an entire web application that simulates the behavior of the Airbnb platform. Starting from the console or command interpreter, to manipulate data without a visual interface, like in a Shell (perfect for development and debugging), followed by the construction of a website (the front-end) that shows the final product to everybody: static and dynamic, once it's finished what follows is the connection with the database or files that store data (data = objects). And last but not least, the creation of an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them).
 
 
 
@@ -142,6 +141,12 @@ You need to install this software
 	- [Place](./models/place.py)
 
 	- [Review](./models/review.py)
+
+## Unittests
+
+All tests should be executed att the root of the project, by using this command:
+
+`python3 -m unittest discover tests`
 
 ##  Authors
 
