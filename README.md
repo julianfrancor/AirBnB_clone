@@ -55,15 +55,11 @@ Airbnb Clone is the main project of the second trimester at Holberton School. Th
 
 * How to start it
 
-Follow the instructions to get a copy of the program and run in your local machine.
-
-- Clone the following repository.
-
-> `https://github.com/julianfrancor/AirBnB_clone.git`
-
-- Run the program
-
-> `./console.py`
+	Follow the instructions to get a copy of the program and run in your local machine:
+	- Clone the following repository.
+		> `https://github.com/julianfrancor/AirBnB_clone.git`
+	- Run the program
+		> `./console.py`
 
 * Commands and their usage
 
