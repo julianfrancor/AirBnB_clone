@@ -7,6 +7,15 @@
 
 For further information, click on the previous link.
 
+## Airbnb Clone - Structure
+
+<img width="701" alt="Airbnb Structure" src="https://user-images.githubusercontent.com/53787841/86388606-b2bc8800-bc5a-11ea-8ff3-8bc21e3fd2b3.png">
+
+
+## UML - Airbnb Console
+
+![UML - Airbnb](https://user-images.githubusercontent.com/53787841/86389113-75a4c580-bc5b-11ea-981c-d11499dca0b9.png)
+
 ##  Contents:
 
 - Project Description
